@@ -5,6 +5,28 @@
       let ws = new WebSocket(HOST);
       let el;
 
+      ws.onopen = function() {
+    console.log("websocket is connected ...");
+    ws.send(
+      JSON.stringify({
+        sender: {
+          data: {},
+          domain: "MyViettel",
+          device: "Browser"
+        },
+        service: 2,
+        context: null,
+        message: {
+          payload: null,
+          text: null,
+          time: 1513572317375,
+          type: "text"
+        },
+        token: "a51b0bf4-fd42-46eb-a316-4fb6c2c975d0"
+      })
+    );
+  };
+
       ws.onmessage = (event) => {
         el = document.getElementById('server-time');
         el.innerHTML = 'Server time: ' + event.data;
